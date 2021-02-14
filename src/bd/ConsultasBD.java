@@ -1,5 +1,7 @@
 package bd;
 import entidades.Productos;
+import entidades.Usuarios;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,6 +35,30 @@ public class ConsultasBD {
 		resultado.close();
 		
 		return listaProductos;
+	}
+	
+	public static LinkedList<Usuarios> login(String nombreUseuario, String contrasenia) throws ClassNotFoundException, SQLException {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+				
+		Connection miConexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/daw", "root", "daw1234");
+		Statement miStatement = miConexion.createStatement();
+		ResultSet datosUsuario = miStatement.executeQuery("SELECT user, password FROM user WHERE (user = '" + nombreUseuario + "') AND (password = '"+ contrasenia + "')");
+		
+	    LinkedList<Usuarios> usuarios=new LinkedList<Usuarios>();
+
+		while (datosUsuario.next()) {
+			Usuarios usuario = new Usuarios();
+			usuario.setUserName(datosUsuario.getString("user"));
+			usuario.setPassword(datosUsuario.getString("password"));
+			usuarios.add(usuario);
+		}
+		
+		miConexion.close();
+		miStatement.close();
+		datosUsuario.close();
+		
+		return usuarios;
 	}
 }
 

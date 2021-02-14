@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import entidades.Usuarios;
 
@@ -55,6 +56,8 @@ public class Login extends HttpServlet {
 			LinkedList<Usuarios> usuarios = bd.ConsultasBD.login(usuarioPost, contraseniaPost);
 
 			if ( ! usuarios.isEmpty() ) {
+				HttpSession misession= request.getSession(true);
+				misession.setAttribute("usuario",usuarios.getFirst().getUserName());
 				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/inicio.jsp");
 				dispatcher.forward(request, response);
 				
@@ -70,5 +73,4 @@ public class Login extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

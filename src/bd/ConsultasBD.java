@@ -41,7 +41,7 @@ public class ConsultasBD {
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 				
-		Connection miConexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/daw", "root", "daw1234");
+		Connection miConexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/daw", "daw", "daw1234");
 		Statement miStatement = miConexion.createStatement();
 		ResultSet datosUsuario = miStatement.executeQuery("SELECT user, password FROM user WHERE (user = '" + nombreUseuario + "') AND (password = '"+ contrasenia + "')");
 		

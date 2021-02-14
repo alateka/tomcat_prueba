@@ -50,7 +50,6 @@ public class Login extends HttpServlet {
 		
 		String usuarioPost = request.getParameter("usuario");
 		String contraseniaPost = request.getParameter("contrasenia");
-		boolean logined = false;
 		
 		try {
 			LinkedList<Usuarios> usuarios = bd.ConsultasBD.login(usuarioPost, contraseniaPost);

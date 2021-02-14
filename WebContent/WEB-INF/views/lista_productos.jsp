@@ -10,6 +10,7 @@
 <title>Lista de productos</title>
 </head>
 <body>
+<jsp:include page="_cabecera.jsp"></jsp:include>
 <h1>Listado de productos</h1>
 <p>Esta consulta se lanzo el ==> <%=new java.util.Date()%></p>
 <table border="1">
@@ -30,5 +31,6 @@ for (int i=0;i<listado.size();i++)
 }
 %>
 </table>
+<jsp:include page="_pie.jsp"></jsp:include>
 </body>
 </html>
